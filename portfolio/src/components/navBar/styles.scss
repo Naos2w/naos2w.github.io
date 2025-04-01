@@ -1,0 +1,123 @@
+.navbar {
+  background-color: var(--green-theme-nav-background-color);
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  position: sticky;
+
+  &_container{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: inherit;
+    padding: 0px 20px;
+    flex: 1;
+
+    &_logo {
+      color: var(--green-theme-main-color);
+      cursor: pointer;
+      text-decoration: none;
+
+      span {
+        font-size: 3rem;
+        font-weight: 700;
+        transition: all 0.5s ease;
+        background: linear-gradient(270deg, #59927f, var(--green-theme-main-color), #f6e0ec);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;  // 讓文字顯示背景色
+        animation: animation-gradient var(--text-animation-duration) linear infinite;
+        background-size: 200%;
+
+        &:hover {
+          font-size: 3.5rem;
+          transition: all 0.5s ease;
+          filter: brightness(1.1); // 增加亮度
+          text-shadow: 0px 0px 15px var(--green-theme-sub-text-color); // 發光效果
+        }
+      }
+    }
+
+    &_menu {
+      display: flex;
+      list-style: none;
+      text-align: center;
+
+      &_item{
+        line-height: 40px;
+        margin-left: 1.5rem;
+        font-size: 1.6rem;
+        transition: all 0.5s ease;
+
+        // &::after {
+        //   content: '';
+        //   display: block;
+        //   height: 3px;
+        //   width: 0;
+        //   background: transparent;
+        //   transition: all 0.5s ease;
+        // }
+        
+        &:hover {
+          font-size: 1.8rem;
+          transition: all 0.5s ease;
+        }
+        // &:hover::after {
+        //   width: 100%;
+        //   background: var(--green-theme-main-color);
+        // }
+
+        &_links {
+          color: var(--green-theme-main-color);
+          text-decoration: none;
+          padding: 0.5rem;
+        }
+      }
+    }
+  }
+}
+
+.nav-icon {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .navbar_container_menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    border-top: 1px solid #fff;
+    position: absolute;
+    top: 80px;
+    left: -110%;
+    opacity: 1;
+    transition: all 0.5s ease;
+
+    &.active {
+      background-color: var(--green-theme-nav-background-color);
+      left: 0px;
+      // opacity: 1;
+    }
+
+    &_item {
+      border-bottom: 1px solid #06181f;
+      margin: 0px;
+      padding: 20px 0px;
+    }
+  }
+  
+  .nav-icon {
+    display: block;
+    cursor: pointer;
+    color: var(--green-theme-main-color);
+    padding-right: 20px;
+  }
+}
+
+@keyframes animation-gradient {
+  to {
+    background-position: 200%;
+  }
+}

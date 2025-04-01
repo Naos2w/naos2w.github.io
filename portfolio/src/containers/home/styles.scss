@@ -1,0 +1,202 @@
+.home {
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  
+  &_info {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+
+    &_text-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      max-width: 50%;
+  
+      h1 {
+        color: var(--green-theme-main-color);
+        margin: 0px;
+        font-weight: 100;
+        font-size: 6rem;
+        line-height: 9rem;
+        position: relative;
+        overflow: hidden;
+        // white-space: nowrap;
+        // animation: typingEffectAnimation 2.5s steps(30, end);
+      }
+
+      &_lastname {
+        font-weight: 600 !important;
+        background: linear-gradient(270deg, #598392, #AEC3B0, #f6e0ec);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;  // 讓文字顯示背景色
+        background-size: 200%;
+        animation: animation-gradient var(--text-animation-duration) linear infinite;
+      }
+  
+      p {
+        color: var(--green-theme-sub-text-color);
+        margin: 0px;
+        font-size: 3rem;
+        line-height: 2em;
+      }
+    }
+
+    &_portrait-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40rem;
+      height: 40rem;
+      border-radius: 10%;
+      background-color: #e5e7eb;
+      margin: 30px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  &_contact-me {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    flex-direction: row;
+    flex-wrap: wrap;
+  
+    button {
+      cursor: pointer;
+      margin: 0px 15px;
+      padding: 10px 10vw;
+      font-size: 2rem;
+      background: transparent;
+      color: var(--green-theme-main-color);
+      border: 1.5px solid var(--green-theme-main-color);
+      border-radius: 4px;
+      font-weight: 500;
+      min-width: 120px; // 避免按鈕太小
+      max-width: 90%;
+      transition: all 0.5s ease-in-out;
+
+      &:hover {
+        background: var(--green-theme-main-color); // 改變背景色
+        color: var(--green-theme-background-color);
+        transform: translateY(-5px) scale(1.1) !important; // 向上浮動
+        box-shadow: 0px 5px 15px var(--green-theme-sub-text-color); // 添加陰影
+        filter: brightness(1.1); // 增加亮度
+        // background-color: var(--green-theme-main-color);
+        // color: var(--green-theme-background-color);
+      }
+    }
+  }
+
+  &_personal_links {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+
+    a {
+      cursor: pointer;
+      padding: 10px;
+      font-size: 2rem;
+      background: transparent;
+      transition: all 0.5s ease;
+
+      &:hover {
+        color: var(--green-theme-background-color);
+        transform: translateY(-5px) scale(1.1); // 向上浮動
+        filter: drop-shadow(0 0 10px var(--green-theme-sub-text-color)); // 發光效果
+      }
+    }
+  }
+}
+
+@media only screen and (width <= 200px) {
+  .home {
+    &_info {
+      &_text-wrapper {
+        margin: 0px;
+        padding: 15px;
+
+        h1 {
+          font-size: 3rem;
+          line-height: 5rem;
+        }
+
+        p {
+          font-size: 1.5rem;
+          line-height: 2.5rem;
+        }
+      }
+
+      &_portrait-wrapper {
+        width: 20rem;
+        height: 20rem;
+      }
+    }
+  }
+}
+
+@media only screen and (width > 200px) and (width <= 768px) {
+  .home {
+    &_info {  
+      &_text-wrapper {
+        margin: 0px;
+        padding: 15px;
+  
+        h1 {
+          font-size: 4rem;
+          line-height: 6rem;
+        }
+  
+        p {
+          font-size: 1.5rem;
+          line-height: 2.5rem;
+        }
+      }
+  
+      &_portrait-wrapper {
+        width: 20rem;
+        height: 20rem;
+      }
+    }
+  }
+}
+
+@media only screen and (width > 768px) and (width <= 990px){
+  .home_info_-wrapper h1 {
+    font-size: 6rem;
+    line-height: 8rem;
+  }
+  .home_info_text-wrapper p {
+    font-size: 2rem;
+    line-height: 3rem;
+  }
+}
+
+@keyframes typingEffectAnimation{
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes animation-gradient {
+  to {
+    background-position: 200%;
+  }
+}
