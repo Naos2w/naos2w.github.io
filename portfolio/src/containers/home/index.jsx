@@ -1,18 +1,16 @@
-import React from "react";
+import React, { forwardRef } from "react";
 // import { useNavigate } from "react-router-dom";
 // import { Animate } from "react-simple-animate";
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import "./styles.scss";
 import { motion } from "framer-motion";
 import { BsDownload } from "react-icons/bs";
+import { useState, useEffect } from "react";
 
-const Home = () => {
-  const ShortIntro = `Software Engineer with experience in developing and maintaining semiconductor automation systems at Macronix. `;
-  // const navi = useNavigate();
-
-  // const handleNaviToContactPage = () => {
-  //   navi("/contact");
-  // };
+const Home = forwardRef((props, ref) => {
+  const ShortIntro = `Experienced software engineer with expertise in backend & frontend development, 
+    system architecture, and team leadership. Passionate about creating scalable 
+    and efficient automation solutions.`;
 
   const containerVariants = {
     hidden: { opacity: 0, x: -100 },
@@ -37,9 +35,30 @@ const Home = () => {
     hidden: { opacity: 0, y: 100 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 1 } },
   };
+  const positionTitle = [
+    "Software Engineer",
+    "Backend Developer",
+    "Frontend Developer",
+    "Technical Lead",
+  ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [fade, setFade] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade(false); // 先讓文字淡出
+      setTimeout(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % positionTitle.length);
+        setFade(true); // 讓新文字淡入
+      }, 500); // 淡出後 500ms 再切換
+    }, 2000);
+
+    return () => clearInterval(interval); // 清除計時器，避免記憶體洩漏
+  }, [positionTitle.length]);
 
   return (
-    <section id="home" className="home">
+    <section ref={ref} id="home" className="home">
       <div className="home_info">
         <motion.div
           className="home_info_text-wrapper"
@@ -47,15 +66,32 @@ const Home = () => {
           animate="visible"
           variants={containerVariants}
         >
-          <h1>Hello, I'm </h1>
-          <h1 className="home_info_text-wrapper_lastname">Tsung-Yu.</h1>
-          <p>{ShortIntro}</p>
+          <div className="home_info_text-wrapper_name">
+            <span>Hello, I'm </span>
+            <span className="home_info_text-wrapper_name_lastname">
+              Tsung-Yu.
+            </span>
+          </div>
+
+          <div className="home_info_text-wrapper_position">
+            <span>I'm a </span>
+            <span
+              className={`home_info_text-wrapper_position_title ${
+                fade ? "fade-in" : "fade-out"
+              }`}
+            >
+              {positionTitle[currentIndex]}
+            </span>
+          </div>
+          <div className="home_info_text-wrapper_intro">
+            <p>{ShortIntro}</p>
+          </div>
         </motion.div>
         <motion.div
           className="home_info_portrait-wrapper"
           initial={{ opacity: 0, x: 100 }}
           animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
         >
           <img src="portrait.jpg" alt="pho" />
         </motion.div>
@@ -123,5 +159,5 @@ const Home = () => {
       {/* </Animate> */}
     </section>
   );
-};
+});
 export default Home;

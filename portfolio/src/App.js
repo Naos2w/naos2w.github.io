@@ -1,20 +1,21 @@
 import "./App.scss";
-import React, { useEffect, useMemo, useState } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
 import Home from "./containers/home";
-import About from "./containers/about";
 import Contact from "./containers/contact";
 import Experience from "./containers/experience";
-import Resume from "./containers/resume";
-import Skills from "./containers/skills";
+import Education from "./containers/education";
 import Navbar from "./components/navBar";
+import BackToTop from "./components/BackToTop";
+import Footer from "./components/footer";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadFull } from "tsparticles";
 import ptcOpt from "./utils.js/particles";
+import useActiveSectionObserver from "./hooks/useActiveSectionObserver";
 
 function App() {
   // particle initialize
   const [init, setInit] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     initParticlesEngine(async (engine) => {
@@ -24,56 +25,59 @@ function App() {
     });
   }, []);
 
+  useActiveSectionObserver(setActiveSection);
+
   const particlesLoaded = (container) => {};
 
-  const location = useLocation();
-  const PtcInHomePage = location.pathname === "/";
+  // const location = useLocation();
+  // const PtcInHomePage = location.pathname === "/";
+
+  // 建立 useRef 來管理每個 section
+  const homeRef = useRef(null);
+  const experienceRef = useRef(null);
+  const educationRef = useRef(null);
+  const contactRef = useRef(null);
+
+  // 處理滾動
+  const scrollToSection = (section) => {
+    if (section === "home") {
+      homeRef.current?.scrollIntoView({ behavior: "smooth" });
+    } else if (section === "experience") {
+      experienceRef.current?.scrollIntoView({ behavior: "smooth" });
+    } else if (section === "education") {
+      educationRef.current?.scrollIntoView({ behavior: "smooth" });
+    } else if (section === "contact") {
+      contactRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <div className="App">
       {/* particles js */}
-      {PtcInHomePage && (
-        <Particles
-          id="tsparticles"
-          particlesLoaded={particlesLoaded}
-          options={ptcOpt}
-        />
-      )}
+      <Particles
+        id="tsparticles"
+        particlesLoaded={particlesLoaded}
+        options={ptcOpt}
+      />
+
       {/* navbar */}
-      <Navbar></Navbar>
+      <Navbar
+        scrollToSection={scrollToSection}
+        activeSection={activeSection}
+      ></Navbar>
       {/* main page content */}
       <div className="App_main-page-content">
-        <Home />
-        {/* <Experience /> */}
-        <Skills />
-
-        {/* <Works />
-        <Education /> */}
-        {/* <Contact /> */}
-        {/* <Routes>
-          <Route index path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/resume" element={<Resume />} />
-          <Route path="/skills" element={<Skills />} />
-        </Routes> */}
+        <Home ref={homeRef} />
+        <Experience ref={experienceRef} />
+        <Education ref={educationRef} />
+        <Contact ref={contactRef} />
       </div>
 
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
+      {/* 👇 Back To Top Button 放這裡最理想 */}
+      <BackToTop />
+
+      {/* footer */}
+      <Footer />
     </div>
   );
 }

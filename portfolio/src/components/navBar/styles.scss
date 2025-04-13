@@ -1,11 +1,21 @@
 .navbar {
   background-color: var(--green-theme-nav-background-color);
-  height: 80px;
+  height: var(--navbar-height);
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.2rem;
-  position: sticky;
+  // position: sticky;
+  top: 0;
+  width: 100%;
+  position: fixed;
+  z-index: 1; //加在這邊才有效果
+
+  &--scrolled {
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);  //玻璃模糊特效
+    -webkit-backdrop-filter: blur(10px);
+  }
 
   &_container{
     display: flex;
@@ -18,24 +28,21 @@
     &_logo {
       color: var(--green-theme-main-color);
       cursor: pointer;
-      text-decoration: none;
+      // text-decoration: none;
+      font-size: 3rem;
+      font-weight: 700;
+      transition: all 0.5s ease;
+      background: linear-gradient(270deg, #59927f, var(--green-theme-main-color), #f6e0ec);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;  // 讓文字顯示背景色
+      animation: animation-gradient var(--text-animation-duration) linear infinite;
+      background-size: 200%;
 
-      span {
-        font-size: 3rem;
-        font-weight: 700;
-        transition: all 0.5s ease;
-        background: linear-gradient(270deg, #59927f, var(--green-theme-main-color), #f6e0ec);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;  // 讓文字顯示背景色
-        animation: animation-gradient var(--text-animation-duration) linear infinite;
-        background-size: 200%;
-
-        &:hover {
-          font-size: 3.5rem;
-          transition: all 0.5s ease;
-          filter: brightness(1.1); // 增加亮度
-          text-shadow: 0px 0px 15px var(--green-theme-sub-text-color); // 發光效果
-        }
+      &:hover {
+        font-size: 3.5rem;
+        transform: translateY(-5px) scale(1.1) !important; // 向上浮動
+        filter: brightness(1.1); // 增加亮度
+        text-shadow: 0px 0px 15px var(--green-theme-sub-text-color); // 發光效果
       }
     }
 
@@ -46,32 +53,37 @@
 
       &_item{
         line-height: 40px;
-        margin-left: 1.5rem;
+        // margin-left: 1.5rem;
+        margin: auto 1.5rem;
         font-size: 1.6rem;
         transition: all 0.5s ease;
-
-        // &::after {
-        //   content: '';
-        //   display: block;
-        //   height: 3px;
-        //   width: 0;
-        //   background: transparent;
-        //   transition: all 0.5s ease;
-        // }
         
         &:hover {
           font-size: 1.8rem;
           transition: all 0.5s ease;
         }
-        // &:hover::after {
-        //   width: 100%;
-        //   background: var(--green-theme-main-color);
-        // }
 
         &_links {
+          font-size: 1.6rem;
           color: var(--green-theme-main-color);
-          text-decoration: none;
+          background-color: transparent;
+          border: none;
+          border-color: transparent;
           padding: 0.5rem;
+          cursor: pointer;
+          transition: transform 0.5s ease, text-shadow 0.5s ease, filter 0.5s ease, color 0.5s ease;
+
+          &.active {
+            color: var(--green-theme-main-color);
+            text-shadow: 0px 0px 10px var(--green-theme-main-color);
+            border-bottom: 2px solid var(--green-theme-main-color);
+          }
+
+          &:hover {
+            transform: translateY(-5px) scale(1.1) !important; // 向上浮動
+            text-shadow: 0px 0px 15px var(--green-theme-main-color); // 發光效果
+            filter: brightness(1.2); // 增加亮度
+          }
         }
       }
     }
@@ -83,6 +95,12 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .navbar--scrolled {
+    background-color: var(--green-theme-nav-background-color);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
   .navbar_container_menu {
     display: flex;
     flex-direction: column;
@@ -92,27 +110,54 @@
     position: absolute;
     top: 80px;
     left: -110%;
-    opacity: 1;
+    // opacity: 1;
     transition: all 0.5s ease;
 
     &.active {
       background-color: var(--green-theme-nav-background-color);
       left: 0px;
-      // opacity: 1;
+      opacity: 1;
     }
 
     &_item {
       border-bottom: 1px solid #06181f;
       margin: 0px;
       padding: 20px 0px;
+      
+      &_links {
+
+      }
     }
   }
   
   .nav-icon {
-    display: block;
-    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
     color: var(--green-theme-main-color);
+    cursor: pointer;
     padding-right: 20px;
+
+    & > svg {
+      position: absolute;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    & > .show {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+      // z-index: 2;
+    }
+
+    & > .hide {
+      opacity: 0;
+      transform: rotate(90deg) scale(0.5);
+      // z-index: 1;
+      pointer-events: none;
+    }
   }
 }
 

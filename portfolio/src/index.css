@@ -1,14 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 :root {
   --green-theme-background-color: #01161E;
   --green-theme-main-color: #EFF6E0;
+  --green-theme-filled-text-color: 239, 246, 224; /* RGB value of #EFF6E0 */
   --green-theme-sub-text-color: #9eb1a0;
   --green-theme-sub-dark-text-color: #7a8a7c;
   --green-theme-nav-background-color: #124559;
+  --msg-red-color: #FF0000;
+  --msg-red-background-color: rgba(255, 0, 0, 0.171);
+  --msg-green-color: #008000;
   --text-animation-duration: 5s;
   /* --font-base-size: 10px;
   font-size: calc(var(--font-base-size) * 1); */
+  --navbar-height: 80px;
 }
 
 * {
@@ -16,17 +21,21 @@
   padding: 0;
   margin: 0;
   scroll-behavior: smooth;
-  font-family: "PT Serif", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 html {
   font-size: 62.5%;
-  height: 100%;
+  /* height: 100%; */
+}
+
+html, body {
+  height: 100%;  
 }
 
 body {
   background: var(--green-theme-background-color);
-  height: 100%;
+  /* height: 100%; */
 }
 
 #root {

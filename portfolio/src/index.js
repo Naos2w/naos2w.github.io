@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 // import Test from "./Test";
+// import Test from "./Test2";
+// import Test from "./TestApp";
 import { BrowserRouter as Router } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 
@@ -11,6 +13,7 @@ root.render(
   <React.StrictMode>
     <Router>
       <App />
+      {/* <Test /> */}
     </Router>
   </React.StrictMode>
 );

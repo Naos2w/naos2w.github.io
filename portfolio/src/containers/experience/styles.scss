@@ -1,73 +1,502 @@
-.expr {
+.exp {
   position: relative;
   display: flex;
-  justify-content: space-around;
-  align-content: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  height: 100%;
+  justify-content: center;
+  align-items: center;
+  // align-content: center;
+  flex-direction: column;
+  // height: 100%;
   padding: 4rem 0;
+  // max-height: 100%;
+  min-height: auto;
+  overflow: visible;
+  background-color: var(--green-theme-background-color);
 
   &_ctn {
     display: flex;
     justify-content: center;
-    align-content: center;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
     width: 100%;
-    flex: 1 1 50%;
+    margin: 15vh auto;
 
     &_title {
       color: var(--green-theme-main-color);
       font-size: 6rem;
       font-weight: 800;
     }
-    
-    &_wrp {
+
+    &_exp_wrp{
       display: flex;
+      justify-content: center;
       align-content: center;
-      flex-direction: row;
-      align-items: center;
-      width: 80%;
-      border-left: 1px solid var(--green-theme-main-color);;
-      padding-left: 4rem;
-      margin: 1rem auto;
+      width: 100%;
 
-      &_textbox {
-        width: 100%;
-        &::before{
-          content: '';
-          position: absolute;
-          width: 2rem;
-          height: 2rem;
-          top: 10;
-          margin: 1.7rem;
-          border-radius: 50%;
-          background-color: var(--green-theme-main-color);
-          margin-left: -5.1rem;
-        }
+      &_company {
+        color: var(--green-theme-main-color);
+        font-size: 3rem;
+        // border-left: solid 2px var(--green-theme-main-color);
+        // padding-left: 4rem;
+        display: flex;
+        flex-direction: column;
+        // flex-wrap: wrap;
+        width: 80%;
 
-        h3 {
+        &_name {
           color: var(--green-theme-main-color);
-          margin: 10px 2px;
-          font-weight: 400;
-          font-size: 2rem;
-          line-height: 3rem;
+          margin: 15px 0px;
+          // width: 100%;
         }
-        span {
-          color: var(--green-theme-sub-dark-text-color);
-          margin: 1px 2px;
-          font-size: 1.5rem;
-          line-height: 2rem;
-          display: block;
+      
+        // &::before {
+        //   content: '';
+        //   position: absolute;
+        //   width: 2rem;
+        //   height: 2rem;
+        //   // top: 10;
+        //   margin: 1.7rem;
+        //   border-radius: 50%;
+        //   background-color: var(--green-theme-main-color);
+        //   margin-left: -5.1rem;
+        // }
+
+        &_wrp {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          // align-content: center;
+          border-left: solid 2px var(--green-theme-sub-text-color);
+          padding-left: 4rem;
+          width: 100%;
+
+          &::before {
+            content: '';
+            position: absolute;
+            width: 2rem;
+            height: 2rem;
+            margin: 15px;
+            border-radius: 50%;
+            background-color: var(--green-theme-sub-text-color);
+            margin-left: -5.1rem;
+          }
+
+          &_duration {
+            color: var(--green-theme-sub-text-color);
+            font-size: 2rem;
+            display: flex;
+            flex: 0 0 10%;
+            margin: 10px 15px;
+          }
+          
+          &_position {
+            color: var(--green-theme-sub-text-color);
+            font-size: 2rem;
+            display: flex;
+            flex: 0 0 15%;
+            margin: 10px 15px;
+          }
+  
+          &_focus {
+            color: var(--green-theme-sub-text-color);
+            font-size: 2rem;
+            display: flex;
+            flex-direction: column;
+            margin: 10px 15px;
+            flex: 0 0 65%;
+
+            &_tags {
+              display: flex;
+              
+              & > ul {
+                font-size: 2rem;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                list-style: none;
+                gap: 10px;
+
+                & > li {
+                  padding: 2px 20px;
+                  // background-color: var(--green-theme-sub-dark-text-color);
+                  // color: var(--green-theme-main-color);
+                  // border: solid 1px var(--green-theme-sub-dark-text-color);
+                  border-radius: 10px;
+                  padding: 1px 20px;
+                  margin: 4px;
+                  display: flex;
+                  align-items: center;
+                  margin-bottom: 8px;
+                  cursor: pointer;
+                  transition: all 0.5s ease-in-out;
+
+                  &:hover {
+                    // background-color: var(--green-theme-sub-dark-text-color);
+                    // color: var(--green-theme-main-color);
+                    transform: translateY(-5px) scale(1.1); // 向上浮動
+                    filter: drop-shadow(0 0 10px var(--green-theme-sub-text-color)); // 發光效果
+                  }
+
+                  & > svg {
+                    margin-right: 8px;
+                    font-size: 1.5rem;
+                  }
+                }
+              }
+              
+              // 根據 class 設定不同顏色
+              & .tag-backend-development {
+                background-color: #3B6F9C; // 柔和藍
+                color: #E0E8D6; // 柔和米白
+              }
+              
+              & .tag-database-management {
+                background-color: #D7A35F; // 柔和橘黃
+                color: #01161E; // 深藍綠
+              }
+              
+              & .tag-system-maintenance {
+                background-color: #4C9A84; // 柔和綠
+                color: #EFF6E0; // 米白
+              }
+              
+              & .tag-ui-ux-development {
+                background-color: #B86C82; // 柔和粉
+                color: #EFF6E0; // 米白
+              }
+              
+              & .tag-require-analysis {
+                background-color: #7D6E99; // 柔和紫
+                color: #EFF6E0; // 米白
+              }
+              
+              & .tag-system-optimization {
+                background-color: #2B3E50; // 柔和深藍灰
+                color: #EFF6E0; // 米白
+              }
+              
+              & .tag-team-leadership {
+                background-color: #A77B50; // 柔和棕色（與橘黃區別）
+                color: #EFF6E0; // 米白
+              }
+              
+              & .tag-frontend-development {
+                background-color: #B87749; // 柔和深橘
+                color: #EFF6E0; // 米白
+              }
+
+              & .tag-c-c\+\+-development {
+                background-color: #4F6470; /* 柔和石墨藍 */
+                color: #EFF6E0; /* 米白 */
+              }
+              // & .server { color: cornsilk; }
+              // & .database { color: darkcyan; }
+              // & .tools { color: darkseagreen; }
+            }
+
+            &_ctn {
+              display: flex;
+              justify-content: center;
+              align-content: center;
+              flex-direction: column;
+              margin: 15px;
+
+              &_resp {
+                display: flex;
+                &_wrp {
+                  display: flex;
+                  font-size: 1.5rem;
+                  max-height: 0;
+                  opacity: 0;
+                  overflow: hidden;
+                  transition: max-height 0.5s ease-in-out, opacity 0.3s ease-in-out;
+                  
+                  & > ul {
+                    list-style-type: none;
+                    padding: 0;
+  
+                    & > li {
+                      padding: 1px 20px;
+                      margin: 4px;
+                      margin-bottom: 8px;
+  
+                      & > svg {
+                        margin-right: 8px;
+                        font-size: 1.5rem;
+                      }
+                    }
+                  }
+                  &.show {
+                    max-height: 500px;
+                    opacity: 1;
+                    transition: max-height 0.5s ease-in-out, opacity 0.3s ease-in-out;
+                  }
+                }
+              }
+
+              &_expand {
+                display: flex;
+                justify-content: flex-end;
+                margin: 15px;
+
+                &_btn {
+                  background: transparent;
+                  border: solid 1px var(--green-theme-main-color);
+                  color: var(--green-theme-main-color);
+                  border-radius: 10px;
+                  padding: 1px 20px;
+                  font-size: 2rem;
+                  margin: 4px;
+                  display: flex;
+                  align-items: center; /* 垂直置中 */
+                  justify-content: center; /* 水平置中 */
+                  gap: 8px;
+                  cursor: pointer;
+                  transition: all 0.5s ease-in-out;
+
+                  &:hover {
+                    background: var(--green-theme-main-color); // 改變背景色
+                    color: var(--green-theme-background-color);
+                    transform: translateY(-5px) scale(1.1) !important; // 向上浮動
+                    box-shadow: 0px 5px 15px var(--green-theme-sub-text-color); // 添加陰影
+                    filter: brightness(1.1); // 增加亮度
+                  }
+                  &.hide {
+                    opacity: 0;
+                    pointer-events: none;
+                  }
+                }
+              }
+            }
+          }
         }
-        p {
-          color: var(--green-theme-sub-text-color);
-          margin: 10px 2px;
-          font-size: 1.5rem;
-          line-height: 2rem;
-          white-space: wrap;
-          position: relative;
+      }
+    }
+
+    &_icon_wrp{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+
+      &_lists{
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 80%;
+        // margin: 5vh auto;
+  
+        &_item{
+          font-size: 5rem;
+          margin: 3px;
+          padding: 2rem;
+          border-radius: 20px;
+          &:hover {
+            color: var(--green-theme-background-color);
+            transform: translateY(-5px) scale(1.1); // 向上浮動
+            filter: drop-shadow(0 0 10px var(--green-theme-sub-text-color)); // 發光效果
+          }
+          
+          &_icon {
+            &-ibmdb2 { color: #09AA05; }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (width <= 200px) {
+  .exp {
+    &_ctn {
+      &_title {
+        font-size: 3rem;
+      }
+      &_exp_wrp {
+        &_company {
+          &_name {
+            font-size: 1.5rem;
+          }
+
+          &_wrp {
+            &::before {
+              width: 1rem;
+              height: 1rem;
+              margin: 12px;
+              margin-left: -4.6rem;
+            }
+            &_duration {
+              font-size: 1rem;
+              flex: 0 0 20%;
+            }
+            &_position {
+              font-size: 1rem;
+              flex: 0 0 50%;
+            }
+            &_focus {
+              font-size: 1rem;
+              flex: 0 0 80%;;
+              &_ctn {
+                &_resp {
+                  &_wrp {
+                    font-size: 1rem;
+                  }
+                }
+                margin: auto;
+                &_expand {
+                  &_btn {
+                    font-size: 1rem;
+                  }
+                }
+              }
+              &_tags {
+                & > ul {
+                  font-size: 1rem;
+                  gap: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+      &_icon_wrp {
+        &_lists {
+          &_item {
+            font-size: 2rem;
+            padding: 0.5rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (width > 200px) and (width <= 768px) {
+  .exp {
+    &_ctn {
+      &_title {
+        font-size: 3rem;
+      }
+      &_exp_wrp {
+        &_company {
+          &_name {
+            font-size: 1.5rem;
+          }
+
+          &_wrp {
+            &::before {
+              width: 1rem;
+              height: 1rem;
+              margin: 12px;
+              margin-left: -4.6rem;
+            }
+            &_duration {
+              font-size: 1rem;
+              flex: 0 0 20%;
+            }
+            &_position {
+              font-size: 1rem;
+              flex: 0 0 50%;
+            }
+            &_focus {
+              font-size: 1rem;
+              flex: 0 0 80%;;
+              &_ctn {
+                &_resp {
+                  &_wrp {
+                    font-size: 1rem;
+                  }
+                }
+                margin: auto;
+                &_expand {
+                  &_btn {
+                    font-size: 1rem;
+                  }
+                }
+              }
+              &_tags {
+                & > ul {
+                  font-size: 1rem;
+                  gap: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+      &_icon_wrp {
+        &_lists {
+          &_item {
+            font-size: 2rem;
+            padding: 0.5rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (width > 768px) and (width <= 990px){
+  .exp {
+    &_ctn {
+      &_title {
+        font-size: 4rem;
+      }
+      &_exp_wrp {
+        &_company {
+          &_name {
+            font-size: 2rem;
+          }
+
+          &_wrp {
+            &::before {
+              width: 1.5rem;
+              height: 1.5rem;
+              margin: 14px;
+              margin-left: -4.9rem;
+            }
+            &_duration {
+              font-size: 1.5rem;
+              flex: 0 0 15%;
+            }
+            &_position {
+              font-size: 1.5rem;
+              flex: 0 0 20%;
+            }
+            &_focus {
+              font-size: 1.5rem;
+              flex: 0 0 50%;;
+              &_ctn {
+                margin: auto;
+                &_resp {
+                  &_wrp {
+                    font-size: 1.5rem;
+                  }
+                }
+                &_expand {
+                  &_btn {
+                    font-size: 1.5rem;
+                  }
+                }
+              }
+              &_tags {
+                & > ul {
+                  font-size: 1.5rem;
+                  gap: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+      &_icon_wrp {
+        &_lists {
+          &_item {
+            font-size: 4rem;
+            padding: 1rem;
+          }
         }
       }
     }
