@@ -1,0 +1,405 @@
+.contact {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-height: auto;
+  overflow: visible;
+  padding: 4rem 0;
+  background-color: var(--green-theme-background-color);
+
+  &_ctn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    margin: 5vh auto;
+
+    &_title {
+      color: var(--green-theme-main-color);
+      font-size: 6rem;
+      font-weight: 800;
+      margin: 20px;
+      text-align: center;
+    }
+
+    &_form {
+      margin: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      align-items: flex-start;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 2rem;
+
+      &_sender {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        flex: 0 0 40%;
+        margin: 10px 20px;
+
+        .input-group {
+          position: relative;
+          width: 100%;
+          margin-bottom: 1rem;
+          
+          input {
+            width: 100%;
+            font-size: 2rem;
+            border-radius: 7px;
+            background-color: transparent;
+            border: 1px solid var(--green-theme-main-color);
+            line-height: 4rem;
+            padding: 0 1rem;
+            color: var(--green-theme-main-color);
+            margin: 16px auto;
+            transition: background-color 0.3s ease;
+
+            &::placeholder {
+              color: var(--green-theme-sub-dark-text-color)
+            }
+            
+            &.has-content {
+              background-color: rgba(var(--green-theme-main-color-rgb), 0.1);
+            }
+
+            &.error {
+              border-color: var(--red-color);
+              background-color: rgba(var(--red-color-rgb), 0.05);
+            }
+          }
+          
+          .error-message {
+            position: absolute;
+            bottom: -1.2rem;
+            left: 0;
+            font-size: 0.75rem;
+            color: var(--red-color);
+          }
+        }
+      }
+
+      &_msg {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        flex: 0 0 40%;
+        margin: 10px 20px;
+
+        .input-group {
+          position: relative;
+          width: 100%;
+          margin-bottom: 1rem;
+          
+          textarea {
+            width: 100%;
+            font-size: 2rem;
+            border-radius: 7px;
+            background-color: transparent;
+            border: 1px solid var(--green-theme-main-color);
+            line-height: 4rem;
+            padding: 0 1rem;
+            color: var(--green-theme-main-color);
+            resize: none;
+            margin: 10px auto;
+            transition: background-color 0.3s ease;
+
+            &::placeholder {
+              color: var(--green-theme-sub-dark-text-color)
+            }
+            
+            &.has-content {
+              background-color: rgba(var(--green-theme-filled-text-color), 0.1);
+            }
+
+            &.error {
+              border-color: var(--red-color);
+              background-color: rgba(var(--red-color-rgb), 0.05);
+            }
+          }
+          
+          .error-message {
+            position: absolute;
+            bottom: -1.2rem;
+            left: 0;
+            font-size: 0.75rem;
+            color: var(--red-color);
+          }
+        }
+
+        .button-group {
+          display: flex;
+          justify-content: flex-end;
+          gap: 1rem;
+          margin-top: 1rem;
+          
+          .reset-btn {
+            background-color: transparent;
+            color: var(--green-theme-main-color);
+            border: 1px solid var(--green-theme-main-color);
+            
+            &:hover {
+              background-color: rgba(var(--green-theme-main-color-rgb), 0.1);
+            }
+            
+            &:disabled {
+              opacity: 0.5;
+              cursor: not-allowed;
+            }
+          }
+          
+          .submit-btn {
+            margin: 10px auto;
+            cursor: pointer;
+            padding: 10px 5vw;
+            font-size: 2rem;
+            background: transparent;
+            color: var(--green-theme-main-color);
+            border: 1.5px solid var(--green-theme-main-color);
+            border-radius: 4px;
+            min-width: 120px; // 避免按鈕太小
+            max-width: 90%;
+            transition: all 0.5s ease-in-out;
+            text-wrap: wrap;
+
+            &:hover {
+              background: var(--green-theme-main-color); // 改變背景色
+              color: var(--green-theme-background-color);
+              transform: translateY(-5px) scale(1.1) !important; // 向上浮動
+              box-shadow: 0px 5px 15px var(--green-theme-sub-text-color); // 添加陰影
+              filter: brightness(1.1); // 增加亮度
+            }
+
+            &:disabled {
+              opacity: 0.5;
+              cursor: not-allowed;
+            }
+            
+            .spinner {
+              display: inline-block;
+              width: 1rem;
+              height: 1rem;
+              border: 2px solid rgba(255, 255, 255, 0.3);
+              border-radius: 50%;
+              border-top-color: #fff;
+              animation: spin 1s ease-in-out infinite;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    animation: slideIn 0.3s ease-out;
+    
+    &.success {
+      background-color: var(--green-color);
+      color: white;
+    }
+    
+    &.error {
+      background-color: var(--red-color);
+      color: white;
+    }
+    
+    .toast-content {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      
+      .toast-icon {
+        font-size: 1.2rem;
+      }
+      
+      .toast-message {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+// Spinner
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid #fff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Toast
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  animation: fadeInOut 4s forwards;
+  z-index: 9999;
+}
+
+.toast.success {
+  background-color: #4caf50;
+  color: white;
+}
+
+.toast.error {
+  background-color: #f44336;
+  color: white;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; bottom: 10px; }
+  10% { opacity: 1; bottom: 30px; }
+  90% { opacity: 1; bottom: 30px; }
+  100% { opacity: 0; bottom: 10px; }
+}
+
+// RWD Media Queries
+@media screen and (max-width: 1200px) {
+  .contact {
+    &_ctn {
+      width: 90%;
+      
+      &_title {
+        font-size: 5rem;
+      }
+      
+      &_form {
+        &_sender, &_msg {
+          flex: 0 0 45%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .contact {
+    &_ctn {
+      width: 95%;
+      
+      &_title {
+        font-size: 4.5rem;
+      }
+      
+      &_form {
+        flex-direction: column;
+        
+        &_sender, &_msg {
+          flex: 0 0 100%;
+          margin: 10px 0;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .contact {
+    padding: 3rem 0;
+    
+    &_ctn {
+      &_title {
+        font-size: 4rem;
+        margin: 15px;
+      }
+      
+      &_form {
+        &_sender, &_msg {
+          & > input, &_textarea {
+            font-size: 1.6rem;
+            line-height: 3rem;
+          }
+          
+          &_btn {
+            font-size: 1.6rem;
+            padding: 8px 4vw;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .contact {
+    padding: 2rem 0;
+    
+    &_ctn {
+      width: 100%;
+      margin: 3vh auto;
+      
+      &_title {
+        font-size: 3.5rem;
+        margin: 10px;
+      }
+      
+      &_form {
+        margin: 10px;
+        
+        &_sender, &_msg {
+          & > input, &_textarea {
+            font-size: 1.4rem;
+            line-height: 2.5rem;
+            margin: 12px auto;
+          }
+          
+          &_btn {
+            font-size: 1.4rem;
+            padding: 6px 3vw;
+            min-width: 100px;
+          }
+        }
+      }
+    }
+  }
+  
+  .toast {
+    width: 90%;
+    text-align: center;
+    font-size: 1.4rem;
+  }
+}
