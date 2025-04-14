@@ -133,7 +133,7 @@ const Home = forwardRef((props, ref) => {
       >
         {/* GitHub */}
         <a
-          href="https://github.com/你的GitHub帳號"
+          href="https://github.com/Naos2w"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -141,7 +141,7 @@ const Home = forwardRef((props, ref) => {
         </a>
         {/* LinkedIn */}
         <a
-          href="https://www.linkedin.com/in/你的LinkedIn帳號/"
+          href="https://www.linkedin.com/in/tsung-yu-tsai-5516b5251"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -149,7 +149,7 @@ const Home = forwardRef((props, ref) => {
         </a>
         {/* Instagram */}
         <a
-          href="https://www.instagram.com/你的Instagram帳號/"
+          href="https://www.instagram.com/na05ss"
           target="_blank"
           rel="noopener noreferrer"
         >

@@ -10,7 +10,7 @@ const Footer = () => {
         </p>
         <div className="footer_links">
           <a
-            href="https://www.linkedin.com/in/你的linkedin"
+            href="https://www.linkedin.com/in/tsung-yu-tsai-5516b5251"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
@@ -18,7 +18,7 @@ const Footer = () => {
             <FaLinkedin />
           </a>
           <a
-            href="https://github.com/你的github"
+            href="https://github.com/Naos2w"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
@@ -26,7 +26,7 @@ const Footer = () => {
             <FaGithub />
           </a>
           <a
-            href="https://www.instagram.com/你的instagram"
+            href="https://www.instagram.com/na05ss"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"

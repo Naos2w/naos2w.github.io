@@ -18,7 +18,7 @@
     align-items: center;
     flex-direction: column;
     width: 100%;
-    margin: 15vh auto;
+    margin: 10vh auto;
 
     &_title {
       color: var(--green-theme-main-color);
@@ -69,6 +69,7 @@
           border-left: solid 2px var(--green-theme-sub-text-color);
           padding-left: 4rem;
           width: 100%;
+          transition: border-left-color 0.3s ease;
 
           &::before {
             content: '';
@@ -79,6 +80,12 @@
             border-radius: 50%;
             background-color: var(--green-theme-sub-text-color);
             margin-left: -5.1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+          }
+
+          &:hover::before {
+            background-color: var(--green-theme-main-color);
+            transform: scale(1.2);
           }
 
           &_duration {
@@ -117,24 +124,21 @@
                 gap: 10px;
 
                 & > li {
-                  padding: 2px 20px;
+                  padding: 5px 20px;
                   // background-color: var(--green-theme-sub-dark-text-color);
                   // color: var(--green-theme-main-color);
                   // border: solid 1px var(--green-theme-sub-dark-text-color);
                   border-radius: 10px;
-                  padding: 1px 20px;
                   margin: 4px;
                   display: flex;
                   align-items: center;
                   margin-bottom: 8px;
                   cursor: pointer;
-                  transition: all 0.5s ease-in-out;
+                  transition: all 0.3s ease;
 
                   &:hover {
-                    // background-color: var(--green-theme-sub-dark-text-color);
-                    // color: var(--green-theme-main-color);
-                    transform: translateY(-5px) scale(1.1); // 向上浮動
-                    filter: drop-shadow(0 0 10px var(--green-theme-sub-text-color)); // 發光效果
+                    transform: translateY(-3px);
+                    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
                   }
 
                   & > svg {
@@ -202,24 +206,29 @@
               margin: 15px;
 
               &_resp {
-                display: flex;
                 &_wrp {
                   display: flex;
                   font-size: 1.5rem;
                   max-height: 0;
                   opacity: 0;
                   overflow: hidden;
-                  transition: max-height 0.5s ease-in-out, opacity 0.3s ease-in-out;
+                  visibility: hidden;
+                  transform: translateY(-20px);
+                  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
                   
                   & > ul {
                     list-style-type: none;
                     padding: 0;
-  
+                    margin: 0;
+
                     & > li {
                       padding: 1px 20px;
                       margin: 4px;
                       margin-bottom: 8px;
-  
+                      opacity: 0;
+                      transform: translateY(-10px);
+                      transition: all 0.3s ease;
+
                       & > svg {
                         margin-right: 8px;
                         font-size: 1.5rem;
@@ -229,7 +238,24 @@
                   &.show {
                     max-height: 500px;
                     opacity: 1;
-                    transition: max-height 0.5s ease-in-out, opacity 0.3s ease-in-out;
+                    visibility: visible;
+                    transform: translateY(0);
+
+                    & > ul > li {
+                      opacity: 1;
+                      transform: translateY(0);
+                    }
+                  }
+                  &.hide {
+                    max-height: 0;
+                    opacity: 0;
+                    visibility: hidden;
+                    transform: translateY(-20px);
+
+                    & > ul > li {
+                      opacity: 0;
+                      transform: translateY(-10px);
+                    }
                   }
                 }
               }
@@ -252,7 +278,7 @@
                   justify-content: center; /* 水平置中 */
                   gap: 8px;
                   cursor: pointer;
-                  transition: all 0.5s ease-in-out;
+                  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
                   &:hover {
                     background: var(--green-theme-main-color); // 改變背景色
@@ -263,6 +289,7 @@
                   }
                   &.hide {
                     opacity: 0;
+                    transform: translateY(-10px);
                     pointer-events: none;
                   }
                 }
@@ -308,7 +335,7 @@
   }
 }
 
-@media only screen and (width <= 200px) {
+@media only screen and (max-width: 375px) {
   .exp {
     &_ctn {
       &_title {

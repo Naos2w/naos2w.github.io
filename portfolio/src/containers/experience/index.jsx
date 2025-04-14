@@ -215,14 +215,21 @@ const Experience = forwardRef((props, ref) => {
     },
   ];
 
+  // 優化動畫設定
+  const animationConfig = {
+    initial: { opacity: 0, x: -50 },
+    whileInView: { opacity: 1, x: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.4, ease: "easeOut" },
+  };
+
   return (
     <section ref={ref} id="experience" className="exp">
       <div className="exp_ctn">
         <motion.div
           className="exp_ctn_title"
-          whileInView={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: -100 }}
-          transition={{ duration: 0.5 }}
+          {...animationConfig}
+          transition={{ ...animationConfig.transition, delay: 0.2 }}
         >
           Work Experience
         </motion.div>
@@ -241,9 +248,9 @@ const Experience = forwardRef((props, ref) => {
                 <motion.div
                   className="exp_ctn_exp_wrp_company_wrp"
                   key={periodIndex}
+                  initial={{ opacity: 0, x: 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  initial={{ opacity: 0, x: 100 }}
-                  transition={{ duration: 0.5, delay: 0.5 + periodIndex * 0.2 }}
+                  transition={{ duration: 0.4, delay: 0.2 + periodIndex * 0.1 }}
                 >
                   <div className="exp_ctn_exp_wrp_company_wrp_duration">
                     <span>{period.duration}</span>
@@ -301,21 +308,19 @@ const Experience = forwardRef((props, ref) => {
                             >
                               <div
                                 className={`exp_ctn_exp_wrp_company_wrp_focus_ctn_resp_wrp ${
-                                  isActive ? "show" : ""
+                                  isActive ? "show" : "hide"
                                 }`}
                               >
-                                {isActive && ( // 確保動畫生效時 `ul` 內容仍然存在
-                                  <ul>
-                                    {responsibility.details.map(
-                                      (detail, detailIndex) => (
-                                        <li key={detailIndex}>
-                                          <GoMilestone />
-                                          {detail}
-                                        </li>
-                                      )
-                                    )}
-                                  </ul>
-                                )}
+                                <ul>
+                                  {responsibility.details.map(
+                                    (detail, detailIndex) => (
+                                      <li key={detailIndex}>
+                                        <GoMilestone />
+                                        {detail}
+                                      </li>
+                                    )
+                                  )}
+                                </ul>
                               </div>
                             </div>
                           );

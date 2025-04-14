@@ -31,24 +31,26 @@
       flex-direction: row;
       align-items: center;
       width: 80%;
-      border-left: 1px solid var(--green-theme-main-color);;
-      padding-left: 4rem;
-      transition: transform 0.3s ease, border-left-width 0.3s ease;
-      // margin: 1rem auto;
+      padding: 2rem 4rem;
+      margin: 1rem auto;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-left: 3px solid var(--green-theme-main-color);
+      transition: all 0.3s ease;
 
       &:hover {
-        transform: translateX(10px);
-        border-left-width: 3px;
+        transform: translateX(10px) translateY(-5px);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
       }
 
       &_textbox {
         width: 100%;
-        &::before{
+        &::before {
           content: '';
           position: absolute;
           width: 2rem;
           height: 2rem;
-          top: 10;
           margin: 1.7rem;
           border-radius: 50%;
           background-color: var(--green-theme-main-color);
@@ -77,6 +79,72 @@
           white-space: wrap;
           position: relative;
         }
+
+        .education-tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+          margin-top: 1rem;
+
+          .tag {
+            background: var(--green-theme-main-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 1.2rem;
+            opacity: 0.9;
+          }
+        }
+
+        .timeline-indicator {
+          position: absolute;
+          left: -4.5rem;
+          width: 3px;
+          height: 100%;
+          background: var(--green-theme-main-color);
+          opacity: 0.3;
+        }
+
+        .achievements {
+          margin-top: 1rem;
+          padding-left: 1.5rem;
+          
+          li {
+            color: var(--green-theme-sub-text-color);
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            
+            &::before {
+              content: "•";
+              position: absolute;
+              left: -1.5rem;
+              color: var(--green-theme-main-color);
+            }
+          }
+        }
+      }
+    }
+
+    // 為不同教育階段設置不同的強調色
+    &_wrp:nth-child(1) {
+      border-left-color: #4CAF50;  // 研究所
+      .edc_ctn_wrp_textbox::before {
+        background-color: #4CAF50;  // 對應的圓點顏色
+      }
+    }
+    
+    &_wrp:nth-child(2) {
+      border-left-color: #2196F3;  // 大學
+      .edc_ctn_wrp_textbox::before {
+        background-color: #2196F3;  // 對應的圓點顏色
+      }
+    }
+    
+    &_wrp:nth-child(3) {
+      border-left-color: #9C27B0;  // 語言學校
+      .edc_ctn_wrp_textbox::before {
+        background-color: #9C27B0;  // 對應的圓點顏色
       }
     }
   }
@@ -169,5 +237,17 @@
         }
       }
     }
+  }
+}
+
+// 添加動畫關鍵幀
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
