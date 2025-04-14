@@ -19,14 +19,19 @@ import { SiCplusplus } from "react-icons/si";
 const Experience = forwardRef((props, ref) => {
   const [activeIndex, setActiveIndex] = useState(new Map()); // 使用 Map 來管理多個展開狀態
 
-  const handleToggle = (periodIndex, tag) => {
+  const handleToggle = (companyIndex, periodIndex, tag) => {
     setActiveIndex((prev) => {
       const newMap = new Map(prev);
-      const key = `${periodIndex}-${tag}`;
+      const key = `${companyIndex}-${periodIndex}-${tag}`;
       if (newMap.has(key)) {
-        newMap.delete(key); // 如果已展開則關閉
+        newMap.delete(key);
       } else {
-        newMap.clear(); // 關閉其他 tag，只展開當前的
+        // 清除同一时期的其他标签
+        Array.from(newMap.keys()).forEach((existingKey) => {
+          if (existingKey.startsWith(`${companyIndex}-${periodIndex}`)) {
+            newMap.delete(existingKey);
+          }
+        });
         newMap.set(key, true);
       }
       return newMap;
@@ -78,6 +83,42 @@ const Experience = forwardRef((props, ref) => {
   ];
 
   const workExperience = [
+    {
+      name: "Self-Learning & Personal Projects",
+      duration: {
+        periods: [
+          {
+            duration: "2024",
+            position: "React Developer",
+            alltags: ["Frontend Development", "UI/UX Development"],
+            responsibilities: [
+              {
+                tags: "Frontend Development",
+                details: [
+                  "Developing a personal portfolio website using React and modern web technologies.",
+                  "Learning and implementing React hooks, components, and state management.",
+                  "Building responsive and interactive user interfaces.",
+                ],
+              },
+              {
+                tags: "UI/UX Development",
+                details: [
+                  "Implementing modern UI/UX design principles in React applications.",
+                  "Creating smooth animations and transitions using Framer Motion.",
+                  "Developing mobile-responsive layouts using SCSS.",
+                ],
+              },
+            ],
+            relatedSkills: [
+              { name: "React", icon: React },
+              { name: "Javascript", icon: Javascript },
+              { name: "HTML5", icon: Html5 },
+              { name: "CSS3", icon: Css3 },
+            ],
+          },
+        ],
+      },
+    },
     {
       name: "Macronix International Co., LTD (MXIC)",
       duration: {
@@ -246,9 +287,8 @@ const Experience = forwardRef((props, ref) => {
       <div className="exp_ctn">
         <motion.div
           className="exp_ctn_title"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
+          {...animationConfig}
+          transition={{ ...animationConfig.transition, delay: 0.2 }}
         >
           Work Experience
         </motion.div>
@@ -257,19 +297,19 @@ const Experience = forwardRef((props, ref) => {
             <div className="exp_ctn_exp_wrp_company" key={companyIndex}>
               <motion.div
                 className="exp_ctn_exp_wrp_company_name"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, x: -100 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
               >
                 <h3>{company.name}</h3>
               </motion.div>
               {company.duration.periods.map((period, periodIndex) => (
                 <motion.div
                   className="exp_ctn_exp_wrp_company_wrp"
-                  key={periodIndex}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 0.3 + periodIndex * 0.2 }}
+                  key={`${companyIndex}-${periodIndex}`}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, x: 100 }}
+                  transition={{ duration: 0.5, delay: 0.5 + periodIndex * 0.2 }}
                 >
                   <div className="exp_ctn_exp_wrp_company_wrp_duration">
                     <span>{period.duration}</span>
@@ -281,7 +321,7 @@ const Experience = forwardRef((props, ref) => {
                     <div className="exp_ctn_exp_wrp_company_wrp_focus_tags">
                       <ul>
                         {period.alltags.map((tag, tagIndex) => {
-                          const key = `${periodIndex}-${tag}`;
+                          const key = `${companyIndex}-${periodIndex}-${tag}`;
                           const isActive = activeIndex.has(key);
                           const tagClass = tag
                             .toLowerCase()
@@ -290,11 +330,13 @@ const Experience = forwardRef((props, ref) => {
 
                           return (
                             <li
-                              key={tagIndex}
+                              key={`${companyIndex}-${periodIndex}-skill-${tagIndex}`}
                               className={`tag-${tagClass} ${
                                 isActive ? "active" : ""
                               }`}
-                              onClick={() => handleToggle(periodIndex, tag)}
+                              onClick={() =>
+                                handleToggle(companyIndex, periodIndex, tag)
+                              }
                             >
                               {tag === "Backend Development" && <FaServer />}
                               {tag === "Database Management" && <FaDatabase />}
@@ -322,7 +364,7 @@ const Experience = forwardRef((props, ref) => {
                       <div className="exp_ctn_exp_wrp_company_wrp_focus_skills">
                         {period.relatedSkills.map((skill, idx) => (
                           <motion.div
-                            key={idx}
+                            key={`${companyIndex}-${periodIndex}-skill-${idx}`}
                             className="skill-icon-container"
                             whileHover={{ scale: 1.1 }}
                             transition={{ duration: 0.2 }}
@@ -339,12 +381,12 @@ const Experience = forwardRef((props, ref) => {
                     <div className="exp_ctn_exp_wrp_company_wrp_focus_ctn">
                       {period.responsibilities.map(
                         (responsibility, respIndex) => {
-                          const key = `${periodIndex}-${responsibility.tags}`;
+                          const key = `${companyIndex}-${periodIndex}-${responsibility.tags}`;
                           const isActive = activeIndex.has(key);
 
                           return (
                             <div
-                              key={respIndex}
+                              key={`${companyIndex}-${periodIndex}-resp-${respIndex}`}
                               className="exp_ctn_exp_wrp_company_wrp_focus_ctn_resp"
                             >
                               <div
@@ -355,7 +397,7 @@ const Experience = forwardRef((props, ref) => {
                                 <ul>
                                   {responsibility.details.map(
                                     (detail, detailIndex) => (
-                                      <li key={detailIndex}>
+                                      <li key={`${key}-detail-${detailIndex}`}>
                                         <GoMilestone />
                                         {detail}
                                       </li>
@@ -370,11 +412,25 @@ const Experience = forwardRef((props, ref) => {
 
                       <div className="exp_ctn_exp_wrp_company_wrp_focus_ctn_expand">
                         {Array.from(activeIndex.keys()).some((key) =>
-                          key.startsWith(`${periodIndex}-`)
+                          key.startsWith(`${companyIndex}-${periodIndex}-`)
                         ) && (
                           <motion.button
                             className="exp_ctn_exp_wrp_company_wrp_focus_ctn_expand_btn"
-                            onClick={() => setActiveIndex(new Map())}
+                            onClick={() => {
+                              setActiveIndex((prev) => {
+                                const newMap = new Map(prev);
+                                Array.from(newMap.keys()).forEach((key) => {
+                                  if (
+                                    key.startsWith(
+                                      `${companyIndex}-${periodIndex}`
+                                    )
+                                  ) {
+                                    newMap.delete(key);
+                                  }
+                                });
+                                return newMap;
+                              });
+                            }}
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: 10 }}
@@ -391,30 +447,6 @@ const Experience = forwardRef((props, ref) => {
               ))}
             </div>
           ))}
-        </div>
-        <div className="exp_ctn_icon_wrp">
-          <motion.div
-            className="exp_ctn_icon_wrp_lists"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            {skillsIcons.map((skill, idx) => (
-              <motion.div
-                key={`${skill.name}-${idx}`}
-                className="exp_ctn_icon_wrp_lists_item"
-                initial="initial"
-                animate="animate"
-                variants={iconVariants((idx % 3) + 1.5)}
-              >
-                <skill.icon
-                  className={`exp_ctn_icon_wrp_lists_item_icon${
-                    skill.iconClass || ""
-                  }`}
-                />
-              </motion.div>
-            ))}
-          </motion.div>
         </div>
       </div>
     </section>

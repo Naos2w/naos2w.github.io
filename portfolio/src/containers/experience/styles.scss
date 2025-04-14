@@ -29,8 +29,9 @@
     &_exp_wrp{
       display: flex;
       justify-content: center;
-      align-content: center;
+      align-items: center;
       width: 100%;
+      flex-direction: column;
 
       &_company {
         color: var(--green-theme-main-color);
@@ -41,6 +42,7 @@
         flex-direction: column;
         // flex-wrap: wrap;
         width: 80%;
+        margin-bottom: 4rem;
 
         &_name {
           color: var(--green-theme-main-color);
@@ -413,38 +415,38 @@
       }
     }
 
-    &_icon_wrp{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
+    // &_icon_wrp{
+    //   display: flex;
+    //   justify-content: center;
+    //   align-items: center;
+    //   width: 100%;
 
-      &_lists{
-        display: flex;
-        justify-content: center;
-        align-content: center;
-        flex-direction: row;
-        flex-wrap: wrap;
-        width: 80%;
-        // margin: 5vh auto;
+    //   &_lists{
+    //     display: flex;
+    //     justify-content: center;
+    //     align-content: center;
+    //     flex-direction: row;
+    //     flex-wrap: wrap;
+    //     width: 80%;
+    //     // margin: 5vh auto;
   
-        &_item{
-          font-size: 5rem;
-          margin: 3px;
-          padding: 2rem;
-          border-radius: 20px;
-          &:hover {
-            color: var(--green-theme-background-color);
-            transform: translateY(-5px) scale(1.1); // 向上浮動
-            filter: drop-shadow(0 0 10px var(--green-theme-sub-text-color)); // 發光效果
-          }
+    //     &_item{
+    //       font-size: 5rem;
+    //       margin: 3px;
+    //       padding: 2rem;
+    //       border-radius: 20px;
+    //       &:hover {
+    //         color: var(--green-theme-background-color);
+    //         transform: translateY(-5px) scale(1.1); // 向上浮動
+    //         filter: drop-shadow(0 0 10px var(--green-theme-sub-text-color)); // 發光效果
+    //       }
           
-          &_icon {
-            &-ibmdb2 { color: #09AA05; }
-          }
-        }
-      }
-    }
+    //       &_icon {
+    //         &-ibmdb2 { color: #09AA05; }
+    //       }
+    //     }
+    //   }
+    // }
   }
 }
 
@@ -501,14 +503,14 @@
           }
         }
       }
-      &_icon_wrp {
-        &_lists {
-          &_item {
-            font-size: 2rem;
-            padding: 0.5rem;
-          }
-        }
-      }
+      // &_icon_wrp {
+      //   &_lists {
+      //     &_item {
+      //       font-size: 2rem;
+      //       padding: 0.5rem;
+      //     }
+      //   }
+      // }
     }
   }
 }
@@ -566,14 +568,14 @@
           }
         }
       }
-      &_icon_wrp {
-        &_lists {
-          &_item {
-            font-size: 2rem;
-            padding: 0.5rem;
-          }
-        }
-      }
+      // &_icon_wrp {
+      //   &_lists {
+      //     &_item {
+      //       font-size: 2rem;
+      //       padding: 0.5rem;
+      //     }
+      //   }
+      // }
     }
   }
 }
@@ -631,14 +633,14 @@
           }
         }
       }
-      &_icon_wrp {
-        &_lists {
-          &_item {
-            font-size: 4rem;
-            padding: 1rem;
-          }
-        }
-      }
+      // &_icon_wrp {
+      //   &_lists {
+      //     &_item {
+      //       font-size: 4rem;
+      //       padding: 1rem;
+      //     }
+      //   }
+      // }
     }
   }
 }
