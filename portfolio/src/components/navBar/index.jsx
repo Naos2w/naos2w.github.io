@@ -18,6 +18,10 @@ const data = [
     to: "education",
   },
   {
+    label: "SKILLS",
+    to: "skills",
+  },
+  {
     label: "CONTACT",
     to: "contact",
   },

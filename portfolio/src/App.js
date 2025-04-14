@@ -4,6 +4,7 @@ import Home from "./containers/home";
 import Contact from "./containers/contact";
 import Experience from "./containers/experience";
 import Education from "./containers/education";
+import Skills from "./containers/skills";
 import Navbar from "./components/navBar";
 import BackToTop from "./components/BackToTop";
 import Footer from "./components/footer";
@@ -35,6 +36,7 @@ function App() {
   // 建立 useRef 來管理每個 section
   const homeRef = useRef(null);
   const experienceRef = useRef(null);
+  const skillsRef = useRef(null);
   const educationRef = useRef(null);
   const contactRef = useRef(null);
 
@@ -44,6 +46,8 @@ function App() {
       homeRef.current?.scrollIntoView({ behavior: "smooth" });
     } else if (section === "experience") {
       experienceRef.current?.scrollIntoView({ behavior: "smooth" });
+    } else if (section === "skills") {
+      skillsRef.current?.scrollIntoView({ behavior: "smooth" });
     } else if (section === "education") {
       educationRef.current?.scrollIntoView({ behavior: "smooth" });
     } else if (section === "contact") {
@@ -69,7 +73,9 @@ function App() {
       <div className="App_main-page-content">
         <Home ref={homeRef} />
         <Experience ref={experienceRef} />
+        <Skills ref={skillsRef} />
         <Education ref={educationRef} />
+
         <Contact ref={contactRef} />
       </div>
 
