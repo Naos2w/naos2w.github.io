@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import icons from "../../assets/images/Icons";
 import "./styles.scss";
 import { motion } from "framer-motion";
@@ -280,16 +280,19 @@ const Experience = forwardRef((props, ref) => {
                     <div className="exp_ctn_exp_wrp_company_wrp_focus_tags">
                       <ul>
                         {period.alltags.map((tag, tagIndex) => {
-                          // 產生一個對應 tag 的 class
+                          const key = `${periodIndex}-${tag}`;
+                          const isActive = activeIndex.has(key);
                           const tagClass = tag
                             .toLowerCase()
                             .replace(/\s+/g, "-")
-                            .replace(/\//g, "-"); // 轉小寫、把空格和 `/` 換成 `-`
+                            .replace(/\//g, "-");
 
                           return (
                             <li
                               key={tagIndex}
-                              className={`tag-${tagClass}`} // 動態加上對應的 class
+                              className={`tag-${tagClass} ${
+                                isActive ? "active" : ""
+                              }`}
                               onClick={() => handleToggle(periodIndex, tag)}
                             >
                               {tag === "Backend Development" && <FaServer />}
