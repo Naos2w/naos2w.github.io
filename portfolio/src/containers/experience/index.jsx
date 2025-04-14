@@ -85,7 +85,6 @@ const Experience = forwardRef((props, ref) => {
           {
             duration: "2022 - 2024",
             position: "Group Leader",
-            // focus: "Project & Team Management",
             alltags: [
               "Frontend Development",
               "Require Analysis",
@@ -113,11 +112,18 @@ const Experience = forwardRef((props, ref) => {
                 ],
               },
             ],
+            relatedSkills: [
+              { name: "Vue.js", icon: Vuejs },
+              { name: "Vuetify", icon: Vuetify },
+              { name: "Javascript", icon: Javascript },
+              { name: "HTML5", icon: Html5 },
+              { name: "CSS3", icon: Css3 },
+              { name: "Git", icon: Git },
+            ],
           },
           {
             duration: "2021 - 2022",
             position: "Lead Software Engineer",
-            // focus: "UI Development & System Evaluation",
             alltags: ["UI/UX Development", "Require Analysis"],
             responsibilities: [
               {
@@ -134,11 +140,15 @@ const Experience = forwardRef((props, ref) => {
                 ],
               },
             ],
+            relatedSkills: [
+              { name: "C#", icon: Csharp },
+              { name: "dotNet", icon: Dotnet },
+              { name: "VisualBasic", icon: VisualBasic },
+            ],
           },
           {
             duration: "2019 - 2021",
             position: "Senior Software Engineer",
-            // focus: "Backend & System Planning",
             alltags: [
               "Backend Development",
               "System Optimization",
@@ -165,11 +175,15 @@ const Experience = forwardRef((props, ref) => {
                 ],
               },
             ],
+            relatedSkills: [
+              { name: "C#", icon: Csharp },
+              { name: "dotNet", icon: Dotnet },
+              { name: "IBMDb2", icon: IBMDb2, iconClass: "-ibmdb2" },
+            ],
           },
           {
             duration: "2017 - 2019",
             position: "Software Engineer",
-            // focus: "Backend Development & System Maintenance",
             alltags: [
               "Backend Development",
               "Database Management",
@@ -197,11 +211,15 @@ const Experience = forwardRef((props, ref) => {
                 ],
               },
             ],
+            relatedSkills: [
+              { name: "C", icon: COnly },
+              { name: "C++", icon: CPlusplus },
+              { name: "IBMDb2", icon: IBMDb2, iconClass: "-ibmdb2" },
+            ],
           },
           {
             duration: "before 2017",
             position: "Student",
-            // focus: "Backend Development & System Maintenance",
             alltags: ["C/C++ Development"],
             responsibilities: [
               {
@@ -248,9 +266,9 @@ const Experience = forwardRef((props, ref) => {
                 <motion.div
                   className="exp_ctn_exp_wrp_company_wrp"
                   key={periodIndex}
-                  initial={{ opacity: 0, x: 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4, delay: 0.2 + periodIndex * 0.1 }}
+                  initial={{ opacity: 0, x: 100 }}
+                  transition={{ duration: 0.5, delay: 0.5 + periodIndex * 0.2 }}
                 >
                   <div className="exp_ctn_exp_wrp_company_wrp_duration">
                     <span>{period.duration}</span>
@@ -295,6 +313,25 @@ const Experience = forwardRef((props, ref) => {
                         })}
                       </ul>
                     </div>
+
+                    {period.relatedSkills && (
+                      <div className="exp_ctn_exp_wrp_company_wrp_focus_skills">
+                        {period.relatedSkills.map((skill, idx) => (
+                          <motion.div
+                            key={idx}
+                            className="skill-icon-container"
+                            whileHover={{ scale: 1.1 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            <skill.icon
+                              className={`skill-icon${skill.iconClass || ""}`}
+                            />
+                            <span className="skill-tooltip">{skill.name}</span>
+                          </motion.div>
+                        ))}
+                      </div>
+                    )}
+
                     <div className="exp_ctn_exp_wrp_company_wrp_focus_ctn">
                       {period.responsibilities.map(
                         (responsibility, respIndex) => {
@@ -308,19 +345,21 @@ const Experience = forwardRef((props, ref) => {
                             >
                               <div
                                 className={`exp_ctn_exp_wrp_company_wrp_focus_ctn_resp_wrp ${
-                                  isActive ? "show" : "hide"
+                                  isActive ? "show" : ""
                                 }`}
                               >
-                                <ul>
-                                  {responsibility.details.map(
-                                    (detail, detailIndex) => (
-                                      <li key={detailIndex}>
-                                        <GoMilestone />
-                                        {detail}
-                                      </li>
-                                    )
-                                  )}
-                                </ul>
+                                {isActive && ( // 確保動畫生效時 `ul` 內容仍然存在
+                                  <ul>
+                                    {responsibility.details.map(
+                                      (detail, detailIndex) => (
+                                        <li key={detailIndex}>
+                                          <GoMilestone />
+                                          {detail}
+                                        </li>
+                                      )
+                                    )}
+                                  </ul>
+                                )}
                               </div>
                             </div>
                           );
