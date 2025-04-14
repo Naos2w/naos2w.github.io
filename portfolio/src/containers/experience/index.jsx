@@ -336,7 +336,7 @@ const Experience = forwardRef((props, ref) => {
                       {period.responsibilities.map(
                         (responsibility, respIndex) => {
                           const key = `${periodIndex}-${responsibility.tags}`;
-                          const isActive = activeIndex.has(key); // 判斷當前是否要顯示
+                          const isActive = activeIndex.has(key);
 
                           return (
                             <div
@@ -348,37 +348,39 @@ const Experience = forwardRef((props, ref) => {
                                   isActive ? "show" : ""
                                 }`}
                               >
-                                {isActive && ( // 確保動畫生效時 `ul` 內容仍然存在
-                                  <ul>
-                                    {responsibility.details.map(
-                                      (detail, detailIndex) => (
-                                        <li key={detailIndex}>
-                                          <GoMilestone />
-                                          {detail}
-                                        </li>
-                                      )
-                                    )}
-                                  </ul>
-                                )}
+                                <ul>
+                                  {responsibility.details.map(
+                                    (detail, detailIndex) => (
+                                      <li key={detailIndex}>
+                                        <GoMilestone />
+                                        {detail}
+                                      </li>
+                                    )
+                                  )}
+                                </ul>
                               </div>
                             </div>
                           );
                         }
                       )}
-                      {/* Show Less 按鈕，只在有展開的 tag 時顯示 */}
-                      {Array.from(activeIndex.keys()).some((key) =>
-                        key.startsWith(`${periodIndex}-`)
-                      ) && (
-                        <div className="exp_ctn_exp_wrp_company_wrp_focus_ctn_expand">
-                          <button
+
+                      <div className="exp_ctn_exp_wrp_company_wrp_focus_ctn_expand">
+                        {Array.from(activeIndex.keys()).some((key) =>
+                          key.startsWith(`${periodIndex}-`)
+                        ) && (
+                          <motion.button
                             className="exp_ctn_exp_wrp_company_wrp_focus_ctn_expand_btn"
                             onClick={() => setActiveIndex(new Map())}
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 10 }}
+                            transition={{ duration: 0.3 }}
                           >
                             <span>Show Less</span>
                             <MdOutlineExpandLess />
-                          </button>
-                        </div>
-                      )}
+                          </motion.button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </motion.div>

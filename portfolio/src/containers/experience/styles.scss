@@ -289,41 +289,34 @@
                     list-style-type: none;
                     padding: 0;
                     margin: 0;
-
+                    width: 100%;
+  
                     & > li {
                       padding: 1px 20px;
                       margin: 4px;
                       margin-bottom: 8px;
                       opacity: 0;
                       transform: translateY(-10px);
-                      transition: all 0.3s ease;
-
+                      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
                       & > svg {
                         margin-right: 8px;
                         font-size: 1.5rem;
                       }
                     }
                   }
+
                   &.show {
                     max-height: 500px;
                     opacity: 1;
                     visibility: visible;
                     transform: translateY(0);
+                    margin: 10px 0;
 
                     & > ul > li {
                       opacity: 1;
                       transform: translateY(0);
-                    }
-                  }
-                  &.hide {
-                    max-height: 0;
-                    opacity: 0;
-                    visibility: hidden;
-                    transform: translateY(-20px);
-
-                    & > ul > li {
-                      opacity: 0;
-                      transform: translateY(-10px);
+                      transition-delay: 0.2s;
                     }
                   }
                 }
@@ -343,8 +336,8 @@
                   font-size: 2rem;
                   margin: 4px;
                   display: flex;
-                  align-items: center; /* 垂直置中 */
-                  justify-content: center; /* 水平置中 */
+                  align-items: center;
+                  justify-content: center;
                   gap: 8px;
                   cursor: pointer;
                   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -352,13 +345,13 @@
                   &:hover {
                     background: var(--green-theme-main-color); // 改變背景色
                     color: var(--green-theme-background-color);
-                    transform: translateY(-5px) scale(1.1) !important; // 向上浮動
-                    box-shadow: 0px 5px 15px var(--green-theme-sub-text-color); // 添加陰影
-                    filter: brightness(1.1); // 增加亮度
+                    transform: translateY(-5px);
+                    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
                   }
+
                   &.hide {
                     opacity: 0;
-                    transform: translateY(-10px);
+                    transform: translateY(10px);
                     pointer-events: none;
                   }
                 }
