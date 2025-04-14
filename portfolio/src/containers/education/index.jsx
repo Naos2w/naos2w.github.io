@@ -52,8 +52,8 @@ const Education = forwardRef((propTypes, ref) => {
       <div className="edc_ctn">
         <motion.div
           className="edc_ctn_title"
-          whileInView={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: -100 }}
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           Education
@@ -62,9 +62,12 @@ const Education = forwardRef((propTypes, ref) => {
           <motion.div
             className="edc_ctn_wrp"
             key={idx}
-            whileInView={{ opacity: 1, x: 0 }}
-            initial={{ opacity: 0, x: 100 }}
-            transition={{ duration: 0.5, delay: idx * 0.2 }}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{
+              duration: 0.5,
+              delay: idx * 0.2,
+            }}
           >
             <div className="edc_ctn_wrp_textbox">
               <h3>{edu.name}</h3>

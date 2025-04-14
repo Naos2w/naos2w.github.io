@@ -246,8 +246,9 @@ const Experience = forwardRef((props, ref) => {
       <div className="exp_ctn">
         <motion.div
           className="exp_ctn_title"
-          {...animationConfig}
-          transition={{ ...animationConfig.transition, delay: 0.2 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
         >
           Work Experience
         </motion.div>
@@ -256,9 +257,9 @@ const Experience = forwardRef((props, ref) => {
             <div className="exp_ctn_exp_wrp_company" key={companyIndex}>
               <motion.div
                 className="exp_ctn_exp_wrp_company_name"
-                whileInView={{ opacity: 1, x: 0 }}
-                initial={{ opacity: 0, x: -100 }}
-                transition={{ duration: 0.5, delay: 0.5 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
               >
                 <h3>{company.name}</h3>
               </motion.div>
@@ -266,9 +267,9 @@ const Experience = forwardRef((props, ref) => {
                 <motion.div
                   className="exp_ctn_exp_wrp_company_wrp"
                   key={periodIndex}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  initial={{ opacity: 0, x: 100 }}
-                  transition={{ duration: 0.5, delay: 0.5 + periodIndex * 0.2 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.3 + periodIndex * 0.2 }}
                 >
                   <div className="exp_ctn_exp_wrp_company_wrp_duration">
                     <span>{period.duration}</span>
@@ -394,9 +395,9 @@ const Experience = forwardRef((props, ref) => {
         <div className="exp_ctn_icon_wrp">
           <motion.div
             className="exp_ctn_icon_wrp_lists"
-            whileInView={{ opacity: 1, x: 0 }}
-            initial={{ opacity: 0, x: -100 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
           >
             {skillsIcons.map((skill, idx) => (
               <motion.div
