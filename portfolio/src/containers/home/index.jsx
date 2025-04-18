@@ -1,13 +1,16 @@
 import React, { forwardRef } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { Animate } from "react-simple-animate";
-import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaInstagram,
+  FaFileDownload,
+} from "react-icons/fa";
 import "./styles.scss";
-import { motion } from "framer-motion";
-import { BsDownload } from "react-icons/bs";
+import { motion, AnimatePresence } from "framer-motion";
+// import { BsDownload } from "react-icons/bs";
 import { useState, useEffect } from "react";
 
-const Home = forwardRef((props, ref) => {
+const Home = forwardRef(({ scrollToSection }, ref) => {
   const ShortIntro = `Experienced software engineer with expertise in backend & frontend development, 
     system architecture, and team leadership. Passionate about creating scalable 
     and efficient automation solutions.`;
@@ -44,6 +47,7 @@ const Home = forwardRef((props, ref) => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [fade, setFade] = useState(true);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -75,13 +79,18 @@ const Home = forwardRef((props, ref) => {
 
           <div className="home_info_text-wrapper_position">
             <span>I'm a </span>
-            <span
-              className={`home_info_text-wrapper_position_title ${
-                fade ? "fade-in" : "fade-out"
-              }`}
-            >
-              {positionTitle[currentIndex]}
-            </span>
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={positionTitle[currentIndex]}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+                className="home_info_text-wrapper_position_title"
+              >
+                {positionTitle[currentIndex]}
+              </motion.span>
+            </AnimatePresence>
           </div>
           <div className="home_info_text-wrapper_intro">
             <p>{ShortIntro}</p>
@@ -93,25 +102,22 @@ const Home = forwardRef((props, ref) => {
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
         >
-          <img src="portrait.jpg" alt="pho" />
+          {!imageLoaded && <div className="loading-spinner"></div>}
+          <motion.img
+            src="portrait.jpg"
+            alt="個人照片"
+            onLoad={() => setImageLoaded(true)}
+            style={{ opacity: imageLoaded ? 1 : 0 }}
+            transition={{ duration: 0.3 }}
+          />
         </motion.div>
       </div>
-      {/* <Animate
-        play
-        duration={1.5}
-        delay={1}
-        start={{
-          opacity: "0",
-        }}
-        end={{
-          opacity: "1",
-        }}
-      > */}
       <div className="home_contact-me">
         <motion.button
           initial="hidden"
           animate="visible"
           variants={HireMeVariants}
+          onClick={() => scrollToSection("contact")}
         >
           Hire Me
         </motion.button>
@@ -120,9 +126,19 @@ const Home = forwardRef((props, ref) => {
           animate="visible"
           variants={ResumeVariants}
         >
-          <span>
-            Resume <BsDownload />
-          </span>
+          <a
+            href="https://drive.google.com/file/d/1qaAteKgTTLVW5luNiqkZs1Qw12ksdy-N/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="resume-link"
+          >
+            {/* Resume <BsDownload /> */}
+            Resume{" "}
+            <FaFileDownload
+              size={22}
+              style={{ verticalAlign: "middle", marginLeft: "5px" }}
+            />
+          </a>
         </motion.button>
       </div>
       <motion.div

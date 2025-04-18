@@ -14,12 +14,12 @@ const data = [
     to: "experience",
   },
   {
-    label: "EDUCATION",
-    to: "education",
-  },
-  {
     label: "SKILLS",
     to: "skills",
+  },
+  {
+    label: "EDUCATION",
+    to: "education",
   },
   {
     label: "CONTACT",
