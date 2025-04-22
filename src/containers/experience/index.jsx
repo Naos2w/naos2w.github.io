@@ -300,6 +300,7 @@ const Experience = forwardRef((props, ref) => {
                 whileInView={{ opacity: 1, x: 0 }}
                 initial={{ opacity: 0, x: -100 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
+                viewport={{ once: true }}
               >
                 <h3>{company.name}</h3>
               </motion.div>
@@ -310,6 +311,7 @@ const Experience = forwardRef((props, ref) => {
                   whileInView={{ opacity: 1, x: 0 }}
                   initial={{ opacity: 0, x: 100 }}
                   transition={{ duration: 0.5, delay: 0.5 + periodIndex * 0.2 }}
+                  viewport={{ once: true }}
                 >
                   <div className="exp_ctn_exp_wrp_company_wrp_duration">
                     <span>{period.duration}</span>
@@ -368,6 +370,7 @@ const Experience = forwardRef((props, ref) => {
                             className="skill-icon-container"
                             whileHover={{ scale: 1.1 }}
                             transition={{ duration: 0.2 }}
+                            viewport={{ once: true }}
                           >
                             <skill.icon
                               className={`skill-icon${skill.iconClass || ""}`}

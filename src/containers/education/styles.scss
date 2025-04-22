@@ -128,24 +128,24 @@
     }
 
     // 為不同教育階段設置不同的強調色
-    &_wrp:nth-child(1) {
-      border-left-color: #4CAF50;  // 研究所
-      .edc_ctn_wrp_textbox::before {
-        background-color: #4CAF50;  // 對應的圓點顏色
-      }
-    }
-    
     &_wrp:nth-child(2) {
-      border-left-color: #2196F3;  // 大學
+      border-left-color: #5B8A72;  // 研究所
       .edc_ctn_wrp_textbox::before {
-        background-color: #2196F3;  // 對應的圓點顏色
+        background-color: #5B8A72;
       }
     }
     
     &_wrp:nth-child(3) {
-      border-left-color: #9C27B0;  // 語言學校
+      border-left-color: #5E88A1;  // 大學
       .edc_ctn_wrp_textbox::before {
-        background-color: #9C27B0;  // 對應的圓點顏色
+        background-color: #5E88A1; 
+      }
+    }
+    
+    &_wrp:nth-child(4) {
+      border-left-color: #A57966;  // 語言學校
+      .edc_ctn_wrp_textbox::before {
+        background-color: #A57966;  
       }
     }
   }
