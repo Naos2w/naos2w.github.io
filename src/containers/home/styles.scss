@@ -58,6 +58,11 @@
         gap: 7px;
         margin: 10px;
 
+        .prefix {
+          color: var(--green-theme-main-color);
+          font-size: 2rem;
+        }
+
         &_title {
           font-weight: bolder;
           &.fade-in {
@@ -175,7 +180,7 @@
   }
 }
 
-@media only screen and (width <= 200px) {
+@media only screen and (max-width: 375px ) {
   .home {
     &_info {
       &_text-wrapper {
@@ -201,7 +206,7 @@
   }
 }
 
-@media only screen and (width > 200px) and (width <= 768px) {
+@media only screen and (min-width: 376px) and (max-width: 768px) {
   .home {
     &_info {  
       flex-direction: column-reverse; // 在手機上先顯示照片再顯示文字
@@ -211,8 +216,22 @@
         max-width: 90%;
         text-align: center;
 
-        &_name, &_position {
+        &_name {
           justify-content: center;
+        }
+        &_position {
+          justify-content: flex-start;
+          flex-direction: column;
+          align-items: center;
+
+          .prefix {
+            align-self: center;
+            margin-bottom: 5px; // 如果使用列佈局則添加間距
+          }
+          
+          &_title {
+            text-align: center;
+          }
         }
         h1 {
           font-size: 4rem;
@@ -239,7 +258,7 @@
   }
 }
 
-@media only screen and (width > 768px) and (width <= 990px){
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
   .home_info_text-wrapper h1 {
     font-size: 5rem;
   }
