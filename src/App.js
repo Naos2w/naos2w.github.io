@@ -12,7 +12,6 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadFull } from "tsparticles";
 import ptcOpt from "./utils.js/particles";
 import useActiveSectionObserver from "./hooks/useActiveSectionObserver";
-import { Helmet } from "react-helmet";
 
 function App() {
   // particle initialize
@@ -58,18 +57,6 @@ function App() {
 
   return (
     <div className="App">
-      {/* Website Logo and title */}
-      <Helmet>
-        {/* 網頁標題 */}
-        <title>Tsung-Yu Tsai | Portfolio</title>
-        {/* 基本 favicon */}
-        <link rel="icon" href="/favicon.ico" />
-
-        {/* 網頁描述 */}
-        <meta name="description" content="Tsung-Yu Tsai's Portfolio" />
-        {/* 網頁圖片 */}
-        <meta property="og:image" content="/assets/images/logo.png" />
-      </Helmet>
       {/* particles js */}
       <Particles
         id="tsparticles"
