@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# Portfolio-react
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+個人前端作品集網站 | Personal Portfolio Website
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 📝 專案簡介 | Project Introduction
 
-### `npm start`
+這是一個用 **React** 打造的個人作品集網站，展示我的技能、經歷、學歷與聯絡方式。
+This is a personal portfolio website built with **React** , showcasing my skills, experience, education, and contact information.
 
-Runs the app in the development mode.
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.
-You may also see any lint errors in the console.
+## 🚀 技術棧 | Tech Stack
 
-### `npm test`
+- **React 18** ：主架構 (Main framework)
+- **React Router DOM** ：單頁應用路由 (SPA Routing)
+- **Sass (SCSS)** ：進階 CSS 預處理 (Advanced CSS styling)
+- **Framer Motion** ：動畫效果 (Animation)
+- **React Icons** ：豐富的 icon 集合 (Icon library)
+- **Particles.js / tsparticles** ：首頁粒子動畫 (Particle animation)
+- **gh-pages** ：一鍵部署到 GitHub Pages (Easy deployment)
+- **其他** ：自訂 hooks、響應式設計、表單驗證等 (Custom hooks, responsive design, form validation, etc.)
 
-Launches the test runner in the interactive watch mode.
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 📦 主要功能 | Main Features
 
-Builds the app for production to the `build` folder.
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- 🎨 **響應式設計** Responsive Design
+  手機、平板、桌機皆可完美瀏覽。
+- 🧑‍💻 **技能、經歷、學歷、聯絡表單**
+  Skills, Experience, Education, Contact Form
+- 🖱️ **平滑滾動與動態導覽列**
+  Smooth scroll & dynamic navbar
+- ✨ **動畫與粒子特效**
+  Animations & Particle Effects
+- 📨 **表單驗證與本地儲存**
+  Form validation & localStorage
+- 🌐 **GitHub Pages 部署**
+  Deploy to GitHub Pages
 
-The build is minified and the filenames include the hashes.
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 📂 專案結構 | Project Structure
 
-### `npm run eject`
+```cpp
+Portfolio-react/
+├── public/           # 靜態資源 Static assets
+├── src/
+│   ├── components/   # 共用元件 Components
+│   ├── containers/   # 各頁面區塊 Sections
+│   ├── hooks/        # 自訂 React hooks
+│   ├── assets/       # 圖片與圖示 Images & Icons
+│   ├── utils.js/     # 工具函式 Utilities
+│   ├── App.js        # 主組件 Main App
+│   └── index.js      # 入口 Entry point
+├── package.json
+└── README.md
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📝 版權聲明 | License
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+本專案僅供個人學習與展示，無商業用途。
+This project is for personal learning and showcase only, not for commercial use.
