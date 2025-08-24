@@ -1,8 +1,9 @@
 import "./App.scss";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Home from "./containers/home";
 import Contact from "./containers/contact";
 import Experience from "./containers/experience";
+import Portfolio from "./containers/portfolio";
 import Education from "./containers/education";
 import Skills from "./containers/skills";
 import Navbar from "./components/navBar";
@@ -39,6 +40,7 @@ function App() {
   const skillsRef = useRef(null);
   const educationRef = useRef(null);
   const contactRef = useRef(null);
+  const portfolioRef = useRef(null);
 
   // 處理滾動
   const scrollToSection = (section) => {
@@ -52,6 +54,8 @@ function App() {
       educationRef.current?.scrollIntoView({ behavior: "smooth" });
     } else if (section === "contact") {
       contactRef.current?.scrollIntoView({ behavior: "smooth" });
+    } else if (section === "portfolio") {
+      portfolioRef.current?.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -74,6 +78,7 @@ function App() {
         <Home scrollToSection={scrollToSection} ref={homeRef} />
         <Experience ref={experienceRef} />
         <Skills ref={skillsRef} />
+        <Portfolio ref={portfolioRef} />
         <Education ref={educationRef} />
         <Contact ref={contactRef} />
       </div>

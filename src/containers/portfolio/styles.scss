@@ -1,0 +1,147 @@
+.portfolio {
+  padding: 4rem 0;
+  position: relative;
+
+  &_title {
+    color: var(--green-theme-main-color);
+    font-size: 4rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  &_slider {
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    max-width: 1200px;
+  }
+
+  &_track {
+    display: flex;
+    will-change: transform;
+    // flex-wrap: wrap;
+  }
+
+  &_card {
+    flex: 1 1 30%;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    margin: 0 auto;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    text-align: center;
+    transform: scale(0.9);
+    transition: all 0.4s ease-in-out;
+    min-width: 0;
+
+    &.dimmed {
+      transform: scale(0.9);
+      filter: brightness(0.6);
+    }
+
+    .card_image {
+      width: 100%;
+      height: 180px;
+      margin-bottom: 1rem;
+
+      img {
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+      }
+    }
+
+    h3 {
+      font-size: 1.6rem;
+      margin-bottom: 0.6rem;
+      color: var(--green-theme-sub-text-color);
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #ccc;
+      margin-bottom: 1.2rem;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    .card_buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: auto;
+
+      .btn {
+        cursor: pointer;
+        padding: 0.6rem 1.6rem;
+        font-size: 1.2rem;
+        border-radius: 6px;
+        font-weight: 500;
+        min-width: 120px;
+        transition: all 0.5s ease-in-out;
+        text-decoration: none;
+
+        &.demo {
+          color: var(--green-theme-main-color);
+          border: 1.5px solid var(--green-theme-main-color);
+          background: transparent;
+
+          &:hover {
+            background: var(--green-theme-main-color);
+            color: var(--green-theme-background-color);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0px 5px 15px var(--green-theme-sub-text-color);
+          }
+        }
+
+        &.code {
+          color: #fff;
+          background: #333;
+          border: 1.5px solid #333;
+
+          &:hover {
+            background: #555;
+            border-color: #555;
+            transform: translateY(-5px) scale(1.1);
+          }
+        }
+      }
+    }
+  }
+
+  &_dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #888;
+      margin: 0 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+
+      &.active {
+        background: var(--green-theme-main-color);
+        transform: scale(1.3);
+      }
+    }
+  }
+}
+@media (max-width: 375px) {
+  .card_buttons {
+    flex-direction: column;
+  }
+}
